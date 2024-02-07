@@ -28,8 +28,8 @@ services:
         image: mongo
         restart: always
         environment:
-            MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER}
-            MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
+            MONGO_INITDB_ROOT_USERNAME: ${DB_USERNAME}
+            MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD}
 
     mongo-express:
         image: mongo-express
@@ -37,9 +37,9 @@ services:
         ports:
             - ${MONGO_EXPRESS_PORT}:8081
         environment:
-            ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGO_USER}
-            ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_PASSWORD}
-            ME_CONFIG_MONGODB_URL: mongodb://${MONGO_USER}:${MONGO_PASSWORD}@mongo:27017/
+            ME_CONFIG_MONGODB_ADMINUSERNAME: ${DB_USERNAME}
+            ME_CONFIG_MONGODB_ADMINPASSWORD: ${DB_PASSWORD}
+            ME_CONFIG_MONGODB_URL: mongodb://${DB_USERNAME}:${DB_PASSWORD}@mongo:27017/
             ME_CONFIG_BASICAUTH_USERNAME: ${MONGO_EXPRESS_USER}
             ME_CONFIG_BASICAUTH_PASSWORD: ${MONGO_EXPRESS_PASSWORD}
 networks:
