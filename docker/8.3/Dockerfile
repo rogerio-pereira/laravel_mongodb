@@ -59,6 +59,10 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY php.ini /etc/php/8.3/cli/conf.d/99-sail.ini
 RUN chmod +x /usr/local/bin/start-container
 
+#MongoDB
+RUN pecl install mongodb && \
+    echo "extension=mongodb.so" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
+
 EXPOSE 8000
 
 ENTRYPOINT ["start-container"]
