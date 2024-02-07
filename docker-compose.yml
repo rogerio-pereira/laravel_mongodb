@@ -30,6 +30,8 @@ services:
         environment:
             MONGO_INITDB_ROOT_USERNAME: ${DB_USERNAME}
             MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD}
+        networks:
+            - sail
 
     mongo-express:
         image: mongo-express
@@ -42,6 +44,8 @@ services:
             ME_CONFIG_MONGODB_URL: mongodb://${DB_USERNAME}:${DB_PASSWORD}@mongo:27017/
             ME_CONFIG_BASICAUTH_USERNAME: ${MONGO_EXPRESS_USER}
             ME_CONFIG_BASICAUTH_PASSWORD: ${MONGO_EXPRESS_PASSWORD}
+        networks:
+            - sail
 networks:
     sail:
         driver: bridge
